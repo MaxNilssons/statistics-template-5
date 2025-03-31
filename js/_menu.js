@@ -12,4 +12,5 @@ createMenu('Depression i Indien', [
   { name: 'CGPA och depression', script: 'cgpa-depression.js' },
   { name: 'Kön och depression', script: 'gender-depression.js' },
   { name: 'Arbetstimmar och depression', script: 'studyhours-depression.js' }
+
 ]);

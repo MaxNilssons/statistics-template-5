@@ -30,7 +30,7 @@ if (allStudents.length > 0) {
 
   addMdToPage('### Diagram: Sleep Duration and Depression');
   drawGoogleChart({
-    chartType: 'LineChart',
+    chartType: 'lineChart',
     data: sleepChartData,
     options: {
       title: 'Sleep Duration vs Average Depression',
