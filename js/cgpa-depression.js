@@ -3,8 +3,9 @@ import dbQuery from './libs/dbQuery.js';
 import tableFromData from './libs/tableFromData.js';
 import drawGoogleChart from './libs/drawGoogleChart.js';
 import makeChartFriendly from './libs/makeChartFriendly.js';
-addMdToPage('## Grade (CGPA) och depression');
 
+
+addMdToPage('## Grade (CGPA) och depression');
 
 let cgpaDepression = await dbQuery(`
   SELECT ROUND(cgpa, 0) as roundedCgpa, 
