@@ -5,14 +5,14 @@ import drawGoogleChart from './libs/drawGoogleChart.js';
 
 addMdToPage('## History of mental illness in the family and depression');
 
-// 🧠 Hämta data
+
 let mentalIllness = await dbQuery(`
   SELECT historyMentalIllness, ROUND(AVG(depression), 2) as depressionRate, COUNT(*) as total
   FROM result_new
   GROUP BY historyMentalIllness;
 `);
 
-// 🧠 Lägg till (Ja) eller (Nej) i tabellens etikett
+
 mentalIllness.forEach(row => {
   if (row.historyMentalIllness === 1) {
     row.historyMentalIllness = '1 (Ja)';
@@ -21,17 +21,17 @@ mentalIllness.forEach(row => {
   }
 });
 
-// 🧠 Visa tabell
+
 tableFromData({ data: mentalIllness });
 
-// 🧠 Förbered diagramdata
+
 let mentalChartData = [['History of Mental Illness', 'Depression Rate']];
 mentalIllness.forEach(row => {
   let label = row.historyMentalIllness.includes('(Ja)') ? 'Ja' : 'Nej';
   mentalChartData.push([label, parseFloat(row.depressionRate)]);
 });
 
-// 🧠 Rita diagram
+
 addMdToPage('### Diagram: Mental Illness History and Depression');
 drawGoogleChart({
   chartType: 'ColumnChart',

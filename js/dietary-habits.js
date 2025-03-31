@@ -5,7 +5,7 @@ import drawGoogleChart from './libs/drawGoogleChart.js';
 
 addMdToPage('## Dietary habits and depression');
 
-// 🥗 Hämta data
+
 let dietaryDepression = await dbQuery(`
   SELECT dietaryHabits, ROUND(AVG(depression), 2) as depressionRate, COUNT(*) as total 
   FROM result_new 
@@ -13,10 +13,10 @@ let dietaryDepression = await dbQuery(`
   ORDER BY dietaryHabits;
 `);
 
-// 🥗 Visa tabell
+
 tableFromData({ data: dietaryDepression });
 
-// 🥗 Förbered chart-data
+
 let dietChartData = [['Dietary Habits', 'Depression Rate']];
 dietaryDepression.forEach(row => {
   if (row.dietaryHabits !== null && row.depressionRate !== null) {
@@ -27,7 +27,7 @@ dietaryDepression.forEach(row => {
   }
 });
 
-// 🥗 Rita diagram
+
 addMdToPage('### Diagram: Dietary Habits and Depression');
 drawGoogleChart({
   chartType: 'ColumnChart',

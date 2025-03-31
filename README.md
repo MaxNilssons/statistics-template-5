@@ -8,8 +8,7 @@ Nedan följer de korrigeringar som jag genomfört.
 ---
 
 ### Sleep Duration
-För att kunna analysera sömnens påverkan på depression behövde jag numeriska värden. Eftersom de ursprungliga svaren angav intervaller (t.ex. "7-8 hours") valde jag att approximera medelvärdet av varje intervall: (Rätt eller fel, who knows) Detta är också något som jag får tänka på framöver---> att jag kan justera värdet och göra det möjligt att räkna på det genom att casta om värden 
-
+För att kunna analysera sömnens påverkan på depression behövde jag numeriska värden. Eftersom de ursprungliga svaren angav intervaller (t.ex. "7-8 hours") valde jag att approximera medelvärdet av varje intervall: (Rätt eller fel, who knows) Detta är också något som jag får tänka på framöver---> att jag kan justera värdet och göra det möjligt att räkna på det genom att casta om värden.
 ```sql
 UPDATE result SET sleepDuration =
 CASE

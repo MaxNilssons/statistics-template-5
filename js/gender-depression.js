@@ -5,14 +5,14 @@ import drawGoogleChart from './libs/drawGoogleChart.js';
 
 addMdToPage('## Gender and depression');
 
-// ✩ Hämta data
+
 let genderDepression = await dbQuery(`
   SELECT gender, ROUND(AVG(depression), 2) as depressionRate, COUNT(*) as total
   FROM result_new
   GROUP BY gender;
 `);
 
-// ✩ Byt 0/1 mot Kvinna/Man
+//  Byt 0/1 mot Kvinna/Man
 const genderMap = { 0: 'Kvinna', 1: 'Man' };
 genderDepression.forEach(row => {
   row.gender = genderMap[row.gender] || 'Annat';
@@ -20,7 +20,7 @@ genderDepression.forEach(row => {
 
 tableFromData({ data: genderDepression });
 
-// ✩ Diagramdata
+
 let genderChartData = [['Gender', 'Depression Rate']];
 genderDepression.forEach(row => {
   genderChartData.push([row.gender, parseFloat(row.depressionRate)]);

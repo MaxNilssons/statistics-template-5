@@ -5,7 +5,7 @@ import drawGoogleChart from './libs/drawGoogleChart.js';
 
 addMdToPage('## Academic pressure and depression');
 
-// 🔹 Hämta data
+
 let pressureAndDepression = await dbQuery(`
   SELECT academicPressure, ROUND(AVG(depression), 2) as depressionRate, COUNT(*) as total 
   FROM result_new 
@@ -13,10 +13,9 @@ let pressureAndDepression = await dbQuery(`
   ORDER BY academicPressure;
 `);
 
-// 🔹 Visa tabell
+
 tableFromData({ data: pressureAndDepression });
 
-// 🔹 Bygg Google Chart-data
 let pressureChartData = [['Academic Pressure', 'Depression Rate']];
 pressureAndDepression.forEach(row => {
   if (row.academicPressure !== null && row.depressionRate !== null) {
@@ -27,7 +26,7 @@ pressureAndDepression.forEach(row => {
   }
 });
 
-// 🔹 Rita diagram
+
 addMdToPage('### Diagram: Academic Pressure and Depression');
 drawGoogleChart({
   chartType: 'LineChart',

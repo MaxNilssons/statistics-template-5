@@ -5,7 +5,7 @@ import drawGoogleChart from './libs/drawGoogleChart.js';
 
 addMdToPage('## Sleep and depression');
 
-// 🟢 Hämta data utan null
+
 let allStudents = await dbQuery(`
   SELECT sleepDuration, ROUND(AVG(depression), 2) as avgDepression
   FROM result_new
@@ -14,11 +14,11 @@ let allStudents = await dbQuery(`
   ORDER BY sleepDuration;
 `);
 
-// 🟢 Visa tabell om data finns
+
 if (allStudents.length > 0) {
   tableFromData({ data: allStudents });
 
-  // 🟢 Bygg Google Chart-data
+
   let sleepChartData = [['Sleep Duration (hours)', 'Average Depression']];
   allStudents.forEach(row => {
     sleepChartData.push([
