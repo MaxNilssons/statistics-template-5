@@ -34,7 +34,7 @@ drawGoogleChart({
   }
 });
 
-// the same db query as before, but with the long month names
+
 let dataForTable = await dbQuery(
   `SELECT monthName, temperatureC FROM dataWithMonths WHERE year = '${currentYear}'`
 );

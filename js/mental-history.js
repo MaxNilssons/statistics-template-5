@@ -6,6 +6,7 @@ import drawGoogleChart from './libs/drawGoogleChart.js';
 addMdToPage('## History of mental illness in the family and depression');
 
 
+
 let mentalIllness = await dbQuery(`
   SELECT historyMentalIllness, ROUND(AVG(depression), 2) as depressionRate, COUNT(*) as total
   FROM result_new

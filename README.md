@@ -100,3 +100,10 @@ Tror inte det är rätt väg att gå.
 ## Fortsättningsvis ; Dropdowns
 
 Jag har kodat in "dropdowns" på vissa undermenyer, så man kan filtrera på män/kvinnor/alla. 
+
+
+## Normalfördelning
+
+Vad jag har hittat så är  svaren antingen 0/1 på om man är deprimerad eller inte. Därför kan man säga att just den biten inte är normalfördelad. 
+
+![alt text](image-1.png)

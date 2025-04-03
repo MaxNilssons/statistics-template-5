@@ -4,6 +4,7 @@ import createMenu from './libs/createMenu.js';
 
 createMenu('Depression i Indien', [
   { name: 'Indien', script: 'startsida.js' },
+  { name: 'Test av normalfördelning', script: 'testingnormal.js' },
   { name: 'Sömn och depression', script: 'sleep-depression.js' },
   { name: 'Akademisk press', script: 'academic-pressure.js' },
   { name: 'Kostvanor', script: 'dietary-habits.js' },

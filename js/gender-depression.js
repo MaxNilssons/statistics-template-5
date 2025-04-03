@@ -31,13 +31,13 @@ if (selectedGender === 'All') {
 
 tableFromData({ data: genderData });
 
-// Bygg diagramdata
+
 let chartData = [['Gender', 'Depression Rate']];
 genderData.forEach(row => {
   chartData.push([row.gender, parseFloat(row.depressionRate)]);
 });
 
-// Visa diagram
+
 addMdToPage('### Diagram: Gender and Depression');
 drawGoogleChart({
   type: 'ColumnChart',

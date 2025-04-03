@@ -17,7 +17,7 @@ const dietLabels = {
   3: 'Hälsosam'
 };
 
-// 🔍 SQL-filter
+
 let genderFilter = selectedGender !== 'Alla' ? `AND gender = '${selectedGender}'` : '';
 
 let dietaryDepression = await dbQuery(`
@@ -28,14 +28,13 @@ let dietaryDepression = await dbQuery(`
   ORDER BY dietaryHabits;
 `);
 
-// Ersätt kostnivåer med labels
 dietaryDepression.forEach(row => {
   row.dietaryHabits = dietLabels[row.dietaryHabits] || row.dietaryHabits;
 });
 
 tableFromData({ data: dietaryDepression });
 
-// Diagramdata
+
 let dietChartData = [['Kostvanor', 'Depression']];
 dietaryDepression.forEach(row => {
   if (row.dietaryHabits && row.depressionRate !== null) {
