@@ -95,4 +95,8 @@ I konsolen står det: ![alt text](image.png)
 Det är samma kod som jag använde i version 3 av mallen, vilket fungerade väldigt bra. 
 
 Jag har hittat en lösning men då måste jag in och ändra på strukturen hos drawGoogleChart.js i libs.
-Tror inte det är rätt väg att gå
+Tror inte det är rätt väg att gå.
+
+## Fortsättningsvis ; Dropdowns
+
+Jag har kodat in "dropdowns" på vissa undermenyer, så man kan filtrera på män/kvinnor/alla. 

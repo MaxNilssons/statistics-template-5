@@ -1,48 +1,67 @@
 import addMdToPage from './libs/addMdToPage.js';
+import addDropdown from './libs/addDropdown.js';
 import dbQuery from './libs/dbQuery.js';
 import tableFromData from './libs/tableFromData.js';
 import drawGoogleChart from './libs/drawGoogleChart.js';
 
-addMdToPage('## Dietary habits and depression');
+addMdToPage('## Kostvanor och depression');
 
+// 🔽 Dropdown för kön
+let selectedGender = addDropdown('Kön', ['Alla', 'Male', 'Female']);
+addMdToPage(`**Valt kön: ${selectedGender}**`);
+
+// Mappning: siffervärden till etiketter
+const dietLabels = {
+  1: 'Ohälsosam',
+  2: 'Medel',
+  3: 'Hälsosam'
+};
+
+// 🔍 SQL-filter
+let genderFilter = selectedGender !== 'Alla' ? `AND gender = '${selectedGender}'` : '';
 
 let dietaryDepression = await dbQuery(`
   SELECT dietaryHabits, ROUND(AVG(depression), 2) as depressionRate, COUNT(*) as total 
   FROM result_new 
+  WHERE dietaryHabits IS NOT NULL ${genderFilter}
   GROUP BY dietaryHabits 
   ORDER BY dietaryHabits;
 `);
 
+// Ersätt kostnivåer med labels
+dietaryDepression.forEach(row => {
+  row.dietaryHabits = dietLabels[row.dietaryHabits] || row.dietaryHabits;
+});
 
 tableFromData({ data: dietaryDepression });
 
-
-let dietChartData = [['Dietary Habits', 'Depression Rate']];
+// Diagramdata
+let dietChartData = [['Kostvanor', 'Depression']];
 dietaryDepression.forEach(row => {
-  if (row.dietaryHabits !== null && row.depressionRate !== null) {
+  if (row.dietaryHabits && row.depressionRate !== null) {
     dietChartData.push([
-      parseInt(row.dietaryHabits),
+      row.dietaryHabits,
       parseFloat(row.depressionRate)
     ]);
   }
 });
 
-
-addMdToPage('### Diagram: Dietary Habits and Depression');
+addMdToPage('### Diagram: Kostvanor och depression');
 drawGoogleChart({
-  chartType: 'ColumnChart',
+  type: 'ColumnChart',
   data: dietChartData,
   options: {
-    title: 'Dietary Habits and Average Depression',
+    title: `Depression per kostkvalitet (${selectedGender})`,
     hAxis: {
-      title: 'Diet Quality (1=Unhealthy, 3=Healthy)',
-      format: '0',
-      gridlines: { count: 3 }
+      title: 'Kostvanor'
     },
     vAxis: {
-      title: 'Depression Rate'
+      title: 'Depression',
+      minValue: 0,
+      maxValue: 1,
+      viewWindow: { min: 0, max: 1 }
     },
-    bar: { groupWidth: '20%' },
+    bar: { groupWidth: '30%' },
     height: 400,
     legend: 'none'
   }

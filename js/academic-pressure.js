@@ -29,7 +29,7 @@ pressureAndDepression.forEach(row => {
 
 addMdToPage('### Diagram: Academic Pressure and Depression');
 drawGoogleChart({
-  chartType: 'LineChart',
+  type: 'LineChart',
   data: pressureChartData,
   options: {
     title: 'Academic Pressure vs Average Depression',

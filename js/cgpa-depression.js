@@ -27,7 +27,7 @@ cgpaDepression.forEach(row => {
 
 addMdToPage('### Diagram: Grade (CGPA) vs Depression');
 drawGoogleChart({
-  chartType: 'LineChart',
+  type: 'LineChart',
   data: cgpaChartData,
   options: {
     title: 'CGPA vs Average Depression',

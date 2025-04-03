@@ -34,7 +34,7 @@ mentalIllness.forEach(row => {
 
 addMdToPage('### Diagram: Mental Illness History and Depression');
 drawGoogleChart({
-  chartType: 'ColumnChart',
+  type: 'ColumnChart',
   data: mentalChartData,
   options: {
     title: 'Mental Illness in Family vs Depression Rate',
